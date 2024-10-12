@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кликер Бизнес Симулятор</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=ВАШ_API_КЛЮЧ" type="text/javascript"></script> <!-- Замените ВАШ_API_КЛЮЧ на свой ключ -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Кликер Бизнес Симулятор</h1>
+        <div id="map" class="map"></div>
+        <div id="businessModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="locationName"></h2>
+                <p>Вы точно хотите открыть бизнес в этом месте?</p>
+                <button onclick="confirmBusiness()">Да, открыть бизнес</button>
+                <button onclick="closeModal()">Нет, отменить</button>
+            </div>
+        </div>
+        <div id="companyInfo" class="company-info" style="display: none;">
+            <h2 id="companyNameDisplay"></h2>
+            <p>Уровень: <span id="level">1</span></p>
+            <p>Баланс: <span id="balance">0</span> руб.</p>
+            <p>Доход в секунду: <span id="income">0</span> руб.</p>
+            <div>
+                <button onclick="toggleWork()">Работа</button>
+                <button onclick="toggleBusiness()">Бизнес</button>
+                <button onclick="openStockMarket()">Биржа</button> <!-- Новая кнопка для открытия биржи -->
+            </div>
+            <div id="workInfo" style="display: none;">
+                <h3>Доступные работы:</h3>
+                <div id="jobs"></div>
+            </div>
+            <div id="businessInfo" style="display: none;">
+                <h3>Доступный бизнес:</h3>
+                <div id="businesses"></div>
+            </div>
+            <h3>Работа:</h3>
+            <p>Работа дворником: <span id="initialEarnings">1</span> руб. за 2 секунды</p>
+            <progress id="progressBar" value="0" max="100"></progress>
+            <p id="progressText"></p>
+        </div>
+    </div>
+    <div id="stockMarketModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close" onclick="closeStockMarket()">&times;</span>
+            <h2>Биржа</h2>
+            <div id="stocks"></div>
+           <canvas id="stockAChart" width="2" height="1"></canvas>
+           <canvas id="stockBChart" width="2" height="1"></canvas>
+        </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+    </html>
